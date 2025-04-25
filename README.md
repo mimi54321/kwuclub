@@ -1,10 +1,8 @@
-# kwuclub
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>京女生診断ゲーム</title>
   <style>
     body {
@@ -13,7 +11,10 @@
       text-align: center;
       padding: 2em;
     }
-    .question, .result, #start-screen, #form-container {
+    .hidden {
+      display: none;
+    }
+    .question, .result {
       display: none;
     }
     .active {
@@ -29,25 +30,30 @@
       border-radius: 8px;
       cursor: pointer;
     }
+    h1 {
+      font-size: 1.8em;
+      margin-bottom: 1em;
+    }
     .result {
-      font-size: 1.3em;
+      font-size: 1.2em;
       margin-top: 2em;
     }
-    iframe {
-      width: 100%;
-      max-width: 600px;
-      height: 800px;
-      border: none;
-      margin-top: 2em;
+    a.form-link {
+      display: inline-block;
+      margin-top: 1.5em;
+      padding: 0.8em 1.2em;
+      background-color: #f06292;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <h1>京女生診断！あなたにぴったりの部活は？</h1>
-
   <div id="start-screen" class="active">
-    <p>あなたにぴったりの部活を診断しよう♪</p>
-    <button onclick="startGame()">はじめる</button>
+    <h1>京女生診断！<br>あなたにぴったりの部活は？</h1>
+    <button onclick="startGame()">スタート</button>
   </div>
 
   <div id="question-container">
@@ -66,14 +72,7 @@
     </div>
 
     <div class="question">
-      <p>Q3. どんな雰囲気の部活がいい？</p>
-      <button onclick="nextQuestion()">優しい先輩がいる部活</button>
-      <button onclick="nextQuestion()">初心者歓迎の部活</button>
-      <button onclick="nextQuestion()">自分のペースで続けられる部活</button>
-    </div>
-
-    <div class="question">
-      <p>Q4. 音楽経験はある？</p>
+      <p>Q3. 音楽経験はある？</p>
       <button onclick="showResult(true)">ある！</button>
       <button onclick="showResult(false)">ない！</button>
     </div>
@@ -82,25 +81,21 @@
   <div id="result" class="result">
     <p>＼あなたにぴったりの部活は…／</p>
     <h2>🎶 マンドリンオーケストラ部！ 🎶</h2>
-    <p id="music-message"></p>
-  </div>
-
-  <div id="form-container">
-    <p><strong>👇 興味をもった人は、ぜひ体験申し込みフォームへ！</strong></p>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfYyIKb_zYHj6iYBKWZDJG7dfdRh8ZVfJ29aA6u2EORdELRiw/viewform?embedded=true"
-            title="楽器体験申し込みフォーム">読み込んでいます…</iframe>
+    <p id="experience-message"></p>
+    <a class="form-link" href="https://docs.google.com/forms/d/1Kgp0YwwheMONJPUA0qfHBguXWYVfGkEaKyF_hlECfoQ/viewform" target="_blank">
+      🎵 楽器体験に応募する
+    </a>
   </div>
 
   <script>
     let current = 0;
     const questions = document.querySelectorAll('.question');
     const startScreen = document.getElementById('start-screen');
-    const resultScreen = document.getElementById('result');
-    const musicMessage = document.getElementById('music-message');
-    const formContainer = document.getElementById('form-container');
+    const result = document.getElementById('result');
 
     function startGame() {
       startScreen.classList.remove('active');
+      current = 0;
       questions[current].classList.add('active');
     }
 
@@ -114,13 +109,13 @@
 
     function showResult(hasExperience) {
       questions[current].classList.remove('active');
-      resultScreen.classList.add('active');
-      formContainer.style.display = 'block'; // ← 診断が終わったらフォームを表示！
+      result.classList.add('active');
 
+      const message = document.getElementById('experience-message');
       if (hasExperience) {
-        musicMessage.textContent = "音楽経験があるあなたはさらに楽しめます！大学で新しいことに挑戦してみませんか？新しい音楽仲間と一緒に奏でよう♪";
+        message.textContent = "音楽経験があるあなたはさらに楽しめます！大学で新しいことに挑戦してみませんか？新しい音楽仲間と一緒に奏でよう♪";
       } else {
-        musicMessage.textContent = "音楽経験がなくても、安心して上達できるマンドリンオーケストラ部がおすすめ！";
+        message.textContent = "音楽経験がなくても、安心して上達できるマンドリンオーケストラ部がおすすめ！";
       }
     }
   </script>
