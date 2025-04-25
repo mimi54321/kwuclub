@@ -48,6 +48,12 @@
   <div id="start-screen" class="active">
     <p>あなたにぴったりの部活を診断しよう！</p>
     <button onclick="startQuiz()">始める</button>
+
+    function startQuiz() {
+  document.getElementById('start-screen').style.display = 'none'; // ← これでスタート画面ごと消える
+  questions[current].classList.add('active');
+}
+
   </div>
 
   <!-- 質問 -->
