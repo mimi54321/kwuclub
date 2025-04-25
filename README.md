@@ -41,29 +41,30 @@
     <button onclick="startQuiz()">診断スタート</button>
   </div>
 
-  <!-- 質問部分 -->
-  <div id="question-container">
-    <div class="question">
-      <p>Q1. 放課後はどう過ごしたい？</p>
-      <button onclick="nextQuestion()">おしゃべりしながらゆるっと活動したい</button>
-      <button onclick="nextQuestion()">ひとりで黙々と打ち込める時間がほしい</button>
-      <button onclick="nextQuestion()">みんなで目標に向かってがんばりたい</button>
-    </div>
-
-    <div class="question">
-      <p>Q2. 興味があるものは？</p>
-      <button onclick="nextQuestion()">音楽</button>
-      <button onclick="nextQuestion()">楽しいこと</button>
-      <button onclick="nextQuestion()">ちょっと人と違うこと</button>
-    </div>
-
-    <div class="question">
-      <p>Q3. どんな雰囲気の部活がいい？</p>
-      <button onclick="showResult()">優しい先輩がいる部活</button>
-      <button onclick="showResult()">初心者歓迎の部活</button>
-      <button onclick="showResult()">自分のペースで続けられる部活</button>
-    </div>
+<!-- 質問部分 -->
+<div id="question-container">
+  <div class="question">
+    <p>Q1. 放課後はどう過ごしたい？</p>
+    <button onclick="nextQuestion()">おしゃべりしながらゆるっと活動したい</button>
+    <button onclick="nextQuestion()">ひとりで黙々と打ち込める時間がほしい</button>
+    <button onclick="nextQuestion()">みんなで目標に向かってがんばりたい</button>
   </div>
+
+  <div class="question">
+    <p>Q2. 興味があるものは？</p>
+    <button onclick="nextQuestion()">音楽</button>
+    <button onclick="nextQuestion()">楽しいこと</button>
+    <button onclick="nextQuestion()">ちょっと人と違うこと</button>
+  </div>
+
+  <div class="question">
+    <p>Q3. どんな雰囲気の部活がいい？</p>
+    <button onclick="showResult()">優しい先輩がいる部活</button>
+    <button onclick="showResult()">初心者歓迎の部活</button>
+    <button onclick="showResult()">自分のペースで続けられる部活</button>
+  </div>
+</div>
+
 
   <!-- 結果画面 -->
   <div id="result" class="result">
