@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>京女生診断ゲーム</title>
   <style>
     body {
@@ -11,14 +11,11 @@
       text-align: center;
       padding: 2em;
     }
-    .hidden {
-      display: none;
-    }
-    .question, .result, #start-screen, #music-experience {
+    .question, .result {
       display: none;
     }
     .active {
-      display: block !important;
+      display: block;
     }
     button {
       display: block;
@@ -31,13 +28,8 @@
       cursor: pointer;
     }
     .result {
-      font-size: 1.2em;
+      font-size: 1.5em;
       margin-top: 2em;
-    }
-    a {
-      color: #ff69b4;
-      font-weight: bold;
-      text-decoration: none;
     }
   </style>
 </head>
@@ -46,19 +38,12 @@
 
   <!-- スタート画面 -->
   <div id="start-screen" class="active">
-    <p>あなたにぴったりの部活を診断しよう！</p>
-    <button onclick="startQuiz()">始める</button>
-
-    function startQuiz() {
-  document.getElementById('start-screen').style.display = 'none'; // ← これでスタート画面ごと消える
-  questions[current].classList.add('active');
-}
-
+    <button onclick="startQuiz()">診断スタート</button>
   </div>
 
-  <!-- 質問 -->
+  <!-- 質問部分 -->
   <div id="question-container">
-    <div class="question">
+    <div class="question active">
       <p>Q1. 放課後はどう過ごしたい？</p>
       <button onclick="nextQuestion()">おしゃべりしながらゆるっと活動したい</button>
       <button onclick="nextQuestion()">ひとりで黙々と打ち込める時間がほしい</button>
@@ -74,62 +59,48 @@
 
     <div class="question">
       <p>Q3. どんな雰囲気の部活がいい？</p>
-      <button onclick="nextQuestion()">優しい先輩がいる部活</button>
-      <button onclick="nextQuestion()">初心者歓迎の部活</button>
-      <button onclick="nextQuestion()">自分のペースで続けられる部活</button>
+      <button onclick="showResult()">優しい先輩がいる部活</button>
+      <button onclick="showResult()">初心者歓迎の部活</button>
+      <button onclick="showResult()">自分のペースで続けられる部活</button>
     </div>
   </div>
 
-  <!-- 音楽経験 -->
-  <div id="music-experience">
-    <p>Q4. 音楽経験はありますか？</p>
-    <button onclick="showResult('no')">ない</button>
-    <button onclick="showResult('yes')">ある</button>
-  </div>
-
-  <!-- 結果 -->
+  <!-- 結果画面 -->
   <div id="result" class="result">
     <p>＼あなたにぴったりの部活は…／</p>
     <h2>🎶 マンドリンオーケストラ部！ 🎶</h2>
-    <p id="experience-message"></p>
-    <p>楽器体験の応募フォームはこちらから👇</p>
-    <p><a href="https://docs.google.com/forms/d/1Kgp0YwwheMONJPUA0qfHBguXWYVfGkEaKyF_hlECfoQ/viewform?edit_requested=true" target="_blank">▶ 楽器体験に応募する</a></p>
+    <p id="result-text"></p>
+    <p>マンドリンオーケストラ部の体験に応募したい方は、下のリンクからどうぞ！</p>
+    <a href="https://docs.google.com/forms/d/1Kgp0YwwheMONJPUA0qfHBguXWYVfGkEaKyF_hlECfoQ/viewform?edit_requested=true" target="_blank">楽器体験の応募フォーム</a>
   </div>
 
   <script>
     let current = 0;
     const questions = document.querySelectorAll('.question');
-    const questionContainer = document.getElementById('question-container');
-    const startScreen = document.getElementById('start-screen');
-    const musicExperience = document.getElementById('music-experience');
-    const result = document.getElementById('result');
-    const experienceMessage = document.getElementById('experience-message');
-
+    
+    // スタートボタンをクリックしたときに診断を開始
     function startQuiz() {
-      startScreen.classList.remove('active');
-      questions[current].classList.add('active');
+      document.getElementById('start-screen').style.display = 'none'; // スタート画面を非表示にする
+      questions[current].classList.add('active'); // 1つ目の質問を表示
     }
 
+    // 次の質問に進む
     function nextQuestion() {
       if (current < questions.length - 1) {
         questions[current].classList.remove('active');
         current++;
         questions[current].classList.add('active');
-      } else {
-        questions[current].classList.remove('active');
-        musicExperience.classList.add('active');
       }
     }
 
-    function showResult(experience) {
-      musicExperience.classList.remove('active');
-      result.classList.add('active');
-
-      if (experience === 'no') {
-        experienceMessage.innerText = "音楽経験がなくても、安心して上達できるマンドリンオーケストラ部がおすすめ！";
-      } else {
-        experienceMessage.innerText = "音楽経験があるあなたはさらに楽しめます！大学で新しいことに挑戦してみませんか？新しい音楽仲間と一緒に奏でよう♪";
-      }
+    // 結果を表示
+    function showResult() {
+      questions[current].classList.remove('active');
+      document.getElementById('result').classList.add('active');
+      
+      // 音楽経験によってメッセージを変更
+      const resultText = document.getElementById('result-text');
+      resultText.textContent = "音楽経験がなくても、安心して上達できるマンドリンオーケストラ部がおすすめ";
     }
   </script>
 </body>
