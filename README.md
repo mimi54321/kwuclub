@@ -39,18 +39,11 @@
   <!-- スタート画面 -->
   <div id="start-screen" class="active">
     <button onclick="startQuiz()">診断スタート</button>
-    
-    function startQuiz() {
-    document.getElementById('start-screen').style.display = 'none'; // ←スタート画面を完全に消す！
-    questions[current].classList.add('active'); // ←1つ目の質問を表示する
-  }
-
-
   </div>
 
   <!-- 質問部分 -->
   <div id="question-container">
-    <div class="question active">
+    <div class="question">
       <p>Q1. 放課後はどう過ごしたい？</p>
       <button onclick="nextQuestion()">おしゃべりしながらゆるっと活動したい</button>
       <button onclick="nextQuestion()">ひとりで黙々と打ち込める時間がほしい</button>
@@ -84,14 +77,12 @@
   <script>
     let current = 0;
     const questions = document.querySelectorAll('.question');
-    
-    // スタートボタンをクリックしたときに診断を開始
+
     function startQuiz() {
-      document.getElementById('start-screen').style.display = 'none'; // スタート画面を非表示にする
-      questions[current].classList.add('active'); // 1つ目の質問を表示
+      document.getElementById('start-screen').style.display = 'none'; // スタート画面を非表示
+      questions[current].classList.add('active'); // 最初の質問を表示
     }
 
-    // 次の質問に進む
     function nextQuestion() {
       if (current < questions.length - 1) {
         questions[current].classList.remove('active');
@@ -100,15 +91,6 @@
       }
     }
 
-    // 結果を表示
     function showResult() {
       questions[current].classList.remove('active');
-      document.getElementById('result').classList.add('active');
-      
-      // 音楽経験によってメッセージを変更
-      const resultText = document.getElementById('result-text');
-      resultText.textContent = "音楽経験がなくても、安心して上達できるマンドリンオーケストラ部がおすすめ";
-    }
-  </script>
-</body>
-</html>
+      document.getElementById('
