@@ -39,6 +39,13 @@
   <!-- スタート画面 -->
   <div id="start-screen" class="active">
     <button onclick="startQuiz()">診断スタート</button>
+    
+    function startQuiz() {
+    document.getElementById('start-screen').style.display = 'none'; // ←スタート画面を完全に消す！
+    questions[current].classList.add('active'); // ←1つ目の質問を表示する
+  }
+
+
   </div>
 
   <!-- 質問部分 -->
