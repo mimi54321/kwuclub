@@ -41,7 +41,7 @@
     <button onclick="startQuiz()">診断スタート</button>
   </div>
 
-　<!-- 質問部分 -->
+  <!-- 質問部分 -->
   <div id="question-container">
     <div class="question">
       <p>Q1. 放課後はどう過ごしたい？</p>
@@ -50,22 +50,20 @@
       <button onclick="nextQuestion()">みんなで目標に向かってがんばりたい</button>
     </div>
 
-   <div class="question">
-     <p>Q2. 興味があるものは？</p>
-     <button onclick="nextQuestion()">音楽</button>
-     <button onclick="nextQuestion()">楽しいこと</button>
-     <button onclick="nextQuestion()">ちょっと人と違うこと</button>
-   </div>
+    <div class="question">
+      <p>Q2. 興味があるものは？</p>
+      <button onclick="nextQuestion()">音楽</button>
+      <button onclick="nextQuestion()">楽しいこと</button>
+      <button onclick="nextQuestion()">ちょっと人と違うこと</button>
+    </div>
 
-   <div class="question">
-     <p>Q3. どんな雰囲気の部活がいい？</p>
-     <button onclick="showResult()">優しい先輩がいる部活</button>
-     <button onclick="showResult()">初心者歓迎の部活</button>
-     <button onclick="showResult()">自分のペースで続けられる部活</button>
-   </div>
-</div>
-
-
+    <div class="question">
+      <p>Q3. どんな雰囲気の部活がいい？</p>
+      <button onclick="showResult()">優しい先輩がいる部活</button>
+      <button onclick="showResult()">初心者歓迎の部活</button>
+      <button onclick="showResult()">自分のペースで続けられる部活</button>
+    </div>
+  </div>
 
   <!-- 結果画面 -->
   <div id="result" class="result">
@@ -76,12 +74,13 @@
     <a href="https://docs.google.com/forms/d/1Kgp0YwwheMONJPUA0qfHBguXWYVfGkEaKyF_hlECfoQ/viewform?edit_requested=true" target="_blank">楽器体験の応募フォーム</a>
   </div>
 
+  <!-- スクリプトはbodyの最後に置く -->
   <script>
     let current = 0;
     const questions = document.querySelectorAll('.question');
 
     function startQuiz() {
-      document.getElementById('start-screen').style.display = 'none'; // スタート画面を非表示
+      document.getElementById('start-screen').classList.remove('active'); // スタート画面を隠す
       questions[current].classList.add('active'); // 最初の質問を表示
     }
 
@@ -95,4 +94,10 @@
 
     function showResult() {
       questions[current].classList.remove('active');
-      document.getElementById('
+      document.getElementById('result').classList.add('active');
+      const resultText = document.getElementById('result-text');
+      resultText.textContent = "音楽経験がなくても、安心して上達できるマンドリンオーケストラ部がおすすめ";
+    }
+  </script>
+</body>
+</html>
